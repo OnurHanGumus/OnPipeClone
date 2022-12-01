@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using Data.UnityObject;
+using Data.ValueObject;
 
 public class GameOverPanelController : MonoBehaviour
 {
@@ -15,10 +17,16 @@ public class GameOverPanelController : MonoBehaviour
     #region SerializeField Variables
     [SerializeField] private GameObject successPanel, failPanel;
     [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private GameObject[] crowns;
+    [SerializeField] private Image[] stageNodes;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Image sliderImage;
+
+    [SerializeField] private int stageNum = 0, levelNum = 0;
 
     #endregion
     #region Private Variables
-    private int _highScore;
+    private UIData _data;
     #endregion
     #endregion
 
@@ -29,12 +37,18 @@ public class GameOverPanelController : MonoBehaviour
 
     private void Init()
     {
-        _highScore = InitializeHighScore();
+        _data = GetData();
     }
-
+    private UIData GetData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
     private void Start()
     {
+        InitializeStageNum();
+    }
 
+    private void InitializeStageNum()
+    {
+        stageNum = SaveSignals.Instance.onGetScore(SaveLoadStates.StageNum, SaveFiles.SaveFile);
+        levelNum = SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
     }
 
     public void CloseGameOverPanel()
@@ -42,46 +56,82 @@ public class GameOverPanelController : MonoBehaviour
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
     }
-    private int InitializeHighScore()
-    {
-        return SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
-    }
-    public void ShowThePanel()
-    {
-        int temp = ScoreSignals.Instance.onGetScore();
 
-        if(temp > _highScore)
-        {
-            successPanel.SetActive(true);
-            failPanel.SetActive(false);
-            scoreTxt.text = "High Score: " + temp;
-            _highScore = temp;
-            SaveSignals.Instance.onSaveScore?.Invoke(temp,SaveLoadStates.Score,SaveFiles.SaveFile);
-        }
-        else
-        {
-            successPanel.SetActive(false);
-            failPanel.SetActive(true);
-            scoreTxt.text = "Score: " + temp;
-        }
-    }
-
-    public void TryAgainBtn()
-    {
-        CoreGameSignals.Instance.onRestartLevel?.Invoke();
-        UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
-        CoreGameSignals.Instance.onPlay?.Invoke();
-    }
     public void MenuBtn()
     {
         CoreGameSignals.Instance.onRestartLevel?.Invoke();
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
+
+        ClearTournamentPart();
     }
 
-    [Button]
-    public void Open()
+    private void ClearTournamentPart()
     {
-        CoreGameSignals.Instance.onLevelFailed?.Invoke();
+        foreach (var i in stageNodes)
+        {
+            i.color = _data.DefaultStageColor;
+        }
+        foreach (var i in crowns)
+        {
+            i.SetActive(false);
+        }
+        sliderImage.color = _data.SuccessStageColor;
+
+    }
+
+    public void OnStageSuccessFul()
+    {
+        ++stageNum;
+        TournamentPartSuccess();
+
+        if (stageNum == stageNodes.Length - 1)
+        {
+            //LevelSignals.Instance.onFinalStage?.Invoke();
+        }
+        else if (stageNum == stageNodes.Length)
+        {
+            CoreGameSignals.Instance.onNextLevel?.Invoke();
+            SaveSignals.Instance.onSaveScore?.Invoke(++levelNum, SaveLoadStates.Level, SaveFiles.SaveFile);
+            //level'i arttýrýp, Farklý bir panelden ödül seçtirmeli veya direk menuye atmalý
+            stageNum = 0;
+        }
+        SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
+
+    }
+
+    private void TournamentPartSuccess()
+    {
+        for (int i = 0; i < stageNum; i++)
+        {
+            crowns[i].SetActive(true);
+            if (i == stageNodes.Length)
+            {
+                return;
+            }
+            stageNodes[i].color = _data.SuccessStageColor;
+        }
+        slider.value = _data.SliderValues[stageNum];
+        successPanel.SetActive(true);
+        failPanel.SetActive(false);
+    }
+
+    public void OnStageFailed()
+    {
+        stageNum = 0;
+        TournamentPartFail();
+    }
+
+    private void TournamentPartFail()
+    {
+        for (int i = 0; i < stageNodes.Length; i++)
+        {
+            stageNodes[i].color = _data.FailStageColor;
+        }
+        sliderImage.color = _data.FailStageColor;
+        SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
+
+        successPanel.SetActive(false);
+        failPanel.SetActive(true);
     }
 }

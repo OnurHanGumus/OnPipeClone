@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Data.UnityObject;
+using Data.ValueObject;
 using DG.Tweening;
 
 public class LevelPanelController : MonoBehaviour
@@ -14,10 +15,10 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshProUGUI goText;
     #endregion
     #region Private Variables
-
+    private LevelData _data;
 
     #endregion
     #endregion
@@ -27,19 +28,23 @@ public class LevelPanelController : MonoBehaviour
     }
     private void Init()
     {
-
+        _data = GetData();
 
     }
-    public void OnScoreUpdateText(ScoreTypeEnums type, int score)
+    private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
+    
+    public void OnPlayPressed()
     {
-        if (type.Equals(ScoreTypeEnums.Score))
-        {
-            scoreTxt.text = score.ToString();
-        }
+        StartCoroutine(StartDelay());
     }
 
-    public void OnRestartLevel()
+    private IEnumerator StartDelay()
     {
-        scoreTxt.text = 0.ToString();
+        yield return new WaitForSeconds(_data.StartDelay);
+        goText.DOFade(1, _data.GoTextFadeTime);
+        CoreGameSignals.Instance.onPlay?.Invoke();
+        yield return new WaitForSeconds(_data.GoTextShowTime);
+        goText.DOFade(0, _data.GoTextFadeTime);
     }
+
 }

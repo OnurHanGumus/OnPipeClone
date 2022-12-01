@@ -10,5 +10,7 @@ namespace Signals
     public class LevelSignals : MonoSingleton<LevelSignals>
     {
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
+        public UnityAction onCylinderDisapeared = delegate { };
+        public Func<Transform> onGetTransform = delegate { return null; };
     }
 }

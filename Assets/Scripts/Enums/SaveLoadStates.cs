@@ -8,5 +8,9 @@ namespace Enums
         Score,
         //Options
         SoundState,
+        Level,
+        StageNum,
+        Gem,
+
     }
 }

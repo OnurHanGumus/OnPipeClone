@@ -29,26 +29,42 @@ namespace Managers
 
         #region Private Variables
 
-        private int _score;
+        private int _playerScore;
+        private int _enemyScore;
+        private int _gem;
         [ShowInInspector]
-        public int Score
+        public int PlayerScore
         {
-            get { return _score; }
-            set { _score = value; }
+            get { return _playerScore; }
+            set { _playerScore = value; }
         }
+        [ShowInInspector]
+
+        public int EnemyScore
+        {
+            get { return _enemyScore; }
+            set { _enemyScore = value; }
+        }
+
+        public int Gem
+        {
+            get { return _gem; }
+            set { _gem = value; }
+        }
+
 
 
         #endregion
 
         #endregion
-
-        private void Awake()
-        {
-            Init();
-        }
         private void Init()
         {
-
+            Gem = InitializeValue(SaveLoadStates.Gem);
+            UISignals.Instance.onSetChangedText?.Invoke(ScoreTypeEnums.Gem, Gem);
+        }
+        private void Start()
+        {
+            Init();
         }
         #region Event Subscription
 
@@ -82,24 +98,61 @@ namespace Managers
 
         private void OnScoreIncrease(ScoreTypeEnums type, int amount)
         {
-            Score += amount;
-            UISignals.Instance.onSetChangedText?.Invoke(type, Score);
+            if (type.Equals(ScoreTypeEnums.Score))
+            {
+                PlayerScore += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
+            }
+            else if (type.Equals(ScoreTypeEnums.EnemyScore))
+            {
+                EnemyScore += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, EnemyScore);
+            }
+            else if (type.Equals(ScoreTypeEnums.Gem))
+            {
+                Gem += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
+                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            }
+
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
         {
-
+            if (type.Equals(ScoreTypeEnums.Gem))
+            {
+                Gem -= amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
+                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            }
         }
 
 
         private int OnGetScore()
         {
-            return Score;
+            return PlayerScore;
         }
 
         private void OnRestartLevel()
         {
-            Score = 0;
+            PlayerScore = 0;
+            EnemyScore = 0;
+        }
+        private int InitializeValue(SaveLoadStates type)
+        {
+            return SaveSignals.Instance.onGetScore(type, SaveFiles.SaveFile);
+        }
+
+        private void OnTimeUp()
+        {
+            if (PlayerScore >= EnemyScore)
+            {
+                CoreGameSignals.Instance.onStageSuccessful?.Invoke();
+            }
+            else
+            {
+                CoreGameSignals.Instance.onStageFailed?.Invoke();
+            }
         }
     }
 }
