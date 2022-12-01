@@ -65,12 +65,17 @@ namespace Managers
         #endregion
 
 
-        public void OnButtonClicked(int direction)
+        public void OnButtonDown()
         {
-            InputSignals.Instance.onClicked?.Invoke(direction);
+            InputSignals.Instance.onClicked?.Invoke(true);
+            Debug.Log("nasýldý");
+        }
+        public void OnButtonUp()
+        {
+            InputSignals.Instance.onClicked?.Invoke(false);
         }
 
-        
+
         private void OnPlay()
         {
         }

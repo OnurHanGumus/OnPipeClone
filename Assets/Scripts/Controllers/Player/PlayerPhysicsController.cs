@@ -17,6 +17,7 @@ namespace Controllers
         #endregion
         #region Private Variables
         private PlayerData _data;
+        private bool _isEnteredNew = false;
         #endregion
         #endregion
         private void Awake()
@@ -31,11 +32,17 @@ namespace Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            //if (other.CompareTag("TargetCenter"))
-            //{
-            //    ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, 1);
-            //    LevelSignals.Instance.onBasket?.Invoke();
-            //}
+            if (other.CompareTag("Cylinder"))
+            {
+                PlayerSignals.Instance.onPlayerCollideWithCylinder?.Invoke(true);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Cylinder"))
+            {
+                PlayerSignals.Instance.onPlayerCollideWithCylinder?.Invoke(false);
+            }
         }
     }
 }

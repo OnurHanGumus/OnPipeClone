@@ -17,4 +17,4 @@ MonoBehaviour:
     ForceY: 10
     InitializePosX: -3
     InitializePosY: 1.2
-    SpeedY: 5
+    SpeedY: 2

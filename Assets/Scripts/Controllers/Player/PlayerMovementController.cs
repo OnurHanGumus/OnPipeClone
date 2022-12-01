@@ -14,6 +14,7 @@ namespace Controllers
         #region Self Variables
 
         #region Serialized Variables
+        [SerializeField] private Transform playerTransform;
         #endregion
         #region Private Variables
         private Rigidbody _rig;
@@ -21,7 +22,10 @@ namespace Controllers
         private PlayerData _data;
 
         private bool _isClicked = false;
+        private bool _isMinimizable = true;
+
         private bool _isNotStarted = false;
+
 
 
         #endregion
@@ -48,18 +52,35 @@ namespace Controllers
                 return;
             }
             _rig.velocity = new Vector3(0, _data.SpeedY, 0);
-            //if (_isClicked)
-            //{
-            //    _rig.velocity = Vector3.zero;
-            //    _rig.AddForce(new Vector3(_data.ForceX * (_isOnRight ? 1 : -1), _data.ForceY, 0), ForceMode.Impulse);
-            //    _isClicked = false;
-            //}
+
+            
+            if (_isClicked)
+            {
+                if (!_isMinimizable)
+                {
+                    return;
+                }
+                float currentScale = playerTransform.localScale.x;
+                float newValue = currentScale - 0.02f;
+                playerTransform.localScale = new Vector3(newValue, newValue, newValue);
+            }
+            else
+            {
+                playerTransform.localScale = new Vector3(0.38f, 0.25f, 0.38f);
+                _isMinimizable = true;
+            }
         }
 
 
-        public void OnClicked(int direction)
+        public void OnClicked(bool clickState)
         {
-            _isClicked = true;
+            _isClicked = clickState;
+            Debug.Log("basýldý");
+        }
+
+        public void OnReleased()
+        {
+            _isClicked = false;
         }
         public void OnPlayPressed()
         {
@@ -72,6 +93,10 @@ namespace Controllers
             _rig.useGravity = true;
         }
 
+        public void OnCollideCylinder(bool isTrue)
+        {
+            _isMinimizable = !isTrue;
+        }
         public void OnReset()
         {
             _isNotStarted = true;

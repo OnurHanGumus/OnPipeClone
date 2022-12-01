@@ -62,6 +62,8 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
+            PlayerSignals.Instance.onPlayerCollideWithCylinder += _movementController.OnCollideCylinder;
+
         }
 
         private void UnsubscribeEvents()
@@ -76,6 +78,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
+            PlayerSignals.Instance.onPlayerCollideWithCylinder -= _movementController.OnCollideCylinder;
 
         }
 

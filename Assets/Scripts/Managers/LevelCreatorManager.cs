@@ -25,7 +25,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
-
+        private LevelData _data;
         #endregion
 
         #endregion
@@ -37,8 +37,9 @@ namespace Managers
 
         private void Init()
         {
+            _data = GetData();
         }
-        public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        public LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
 
         #region Event Subscription
 
@@ -74,7 +75,7 @@ namespace Managers
 
         private void InitializeLevel()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < _data.InitializeCylinderCount; i++)
             {
                 GetCylinderFromPool();
 
@@ -84,7 +85,10 @@ namespace Managers
         private void GetCylinderFromPool()
         {
             GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Cylinder);
-            temp.transform.localScale = new Vector3(1, Random.Range(1, 4), 1);
+            float xzScale = Random.Range(_data.CylinderMinXZScale, _data.CylinderMaxXZScale);
+            xzScale = (float) Math.Round(xzScale, 1);
+            Debug.Log(xzScale);
+            temp.transform.localScale = new Vector3(xzScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), xzScale);
 
             temp.transform.position = new Vector3(0, nextCylinderPosY + (temp.transform.localScale.y), 0);
             temp.SetActive(true);

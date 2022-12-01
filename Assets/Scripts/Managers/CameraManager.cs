@@ -74,8 +74,8 @@ namespace Managers
 
         private void ChangeColor()
         {
-            _cam.backgroundColor = _data.LevelColors[_levelId];
-            RenderSettings.fogColor = _data.LevelColors[_levelId];
+            //_cam.backgroundColor = _data.LevelColors[_levelId];
+            //RenderSettings.fogColor = _data.LevelColors[_levelId];
         }
 
         private void OnPlay()
