@@ -22,10 +22,12 @@ namespace Managers
 
         #region Serialized Variables
         [SerializeField] private float nextCylinderPosY = 0f;
+
         #endregion
 
         #region Private Variables
         private LevelData _data;
+        private float _lastXZScale = 0;
         #endregion
 
         #endregion
@@ -85,8 +87,17 @@ namespace Managers
         private void GetCylinderFromPool()
         {
             GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Cylinder);
-            float xzScale = Random.Range(_data.CylinderMinXZScale, _data.CylinderMaxXZScale);
-            xzScale = (float) Math.Round(xzScale, 1);
+            float xzScale;
+
+            do
+            {
+                xzScale = Random.Range(_data.CylinderMinXZScale, _data.CylinderMaxXZScale);
+                xzScale = (float)Math.Round(xzScale, 1);
+            } while (xzScale == _lastXZScale);
+
+            _lastXZScale = xzScale;
+
+
             Debug.Log(xzScale);
             temp.transform.localScale = new Vector3(xzScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), xzScale);
 
