@@ -68,7 +68,6 @@ namespace Managers
         public void OnButtonDown()
         {
             InputSignals.Instance.onClicked?.Invoke(true);
-            Debug.Log("nasýldý");
         }
         public void OnButtonUp()
         {

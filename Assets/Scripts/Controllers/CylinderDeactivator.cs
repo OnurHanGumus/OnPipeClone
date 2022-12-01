@@ -22,6 +22,10 @@ public class CylinderDeactivator : MonoBehaviour
         if (other.CompareTag("Cylinder"))
         {
             LevelSignals.Instance.onCylinderDisapeared?.Invoke();
+            other.transform.parent.gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("CollectableBlocks"))
+        {
             other.gameObject.SetActive(false);
         }
     }

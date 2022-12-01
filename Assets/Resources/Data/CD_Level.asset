@@ -13,14 +13,8 @@ MonoBehaviour:
   m_Name: CD_Level
   m_EditorClassIdentifier: 
   Data:
-    TimerCount: 59
-    BasketCountToWin: 
-    ScorePointsDefaultAlpha: 50
-    ScorePointsIncreasedAlpha: 255
-    StartDelay: 2
-    BackgroundPanelMoveDelay: 0.5
-    BackgroundPanelInitializePosY: 15
-    BackgroundPanelStartPosY: 8.1
-    GoTextFadeTime: 0.2
-    GoTextShowTime: 0.4
-    LevelColors: []
+    InitializeCylinderCount: 5
+    CylinderMinXZScale: 0.5
+    CylinderMaxXZScale: 1
+    CylinderMinYScale: 2
+    CylinderMaxYScale: 4

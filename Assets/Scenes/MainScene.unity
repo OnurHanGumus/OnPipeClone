@@ -2240,8 +2240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abcbf0e1b2cb7949b18fbd42a949757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cylinderPrefab: {fileID: 8698673038192981634, guid: 7c13a817ac805c24c8d0bd91a3e7b4df, type: 3}
-  amountCylinder: 10
+  cylinderPrefab: {fileID: 3290074954671152442, guid: aed0a9f09d347d440932838ed3c5f627, type: 3}
+  collectablePrefab: {fileID: 3297865990157635296, guid: fe8a46fde344f9645bbf5804ceefa79a, type: 3}
+  amountCylinder: 15
+  amountCollectable: 15
 --- !u!1 &749374685
 GameObject:
   m_ObjectHideFlags: 0

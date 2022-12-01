@@ -43,6 +43,7 @@ namespace Controllers
             {
                 PlayerSignals.Instance.onPlayerCollideWithCylinder?.Invoke(false);
             }
+            
         }
     }
 }

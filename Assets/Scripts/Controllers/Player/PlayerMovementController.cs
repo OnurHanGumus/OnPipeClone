@@ -75,7 +75,6 @@ namespace Controllers
         public void OnClicked(bool clickState)
         {
             _isClicked = clickState;
-            Debug.Log("basýldý");
         }
 
         public void OnReleased()

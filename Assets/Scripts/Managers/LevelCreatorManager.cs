@@ -28,6 +28,7 @@ namespace Managers
         #region Private Variables
         private LevelData _data;
         private float _lastXZScale = 0;
+        private float _lastCylinderPosY = 0;
         #endregion
 
         #endregion
@@ -80,7 +81,7 @@ namespace Managers
             for (int i = 0; i < _data.InitializeCylinderCount; i++)
             {
                 GetCylinderFromPool();
-
+                GetCollectablesFromPool();
             }
         }
 
@@ -97,18 +98,28 @@ namespace Managers
 
             _lastXZScale = xzScale;
 
-
-            Debug.Log(xzScale);
             temp.transform.localScale = new Vector3(xzScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), xzScale);
 
             temp.transform.position = new Vector3(0, nextCylinderPosY + (temp.transform.localScale.y), 0);
+            _lastCylinderPosY = temp.transform.position.y;
+
             temp.SetActive(true);
             nextCylinderPosY = nextCylinderPosY + (temp.transform.localScale.y * 2);
+        }
+
+        private void GetCollectablesFromPool()
+        {
+            GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Collectable);
+            temp.transform.position = new Vector3(0, _lastCylinderPosY, 0);
+            temp.transform.localScale = new Vector3(_lastXZScale, _lastXZScale, _lastXZScale);
+            temp.SetActive(true);
+
         }
 
         private void OnCylinderDisapeared()
         {
             GetCylinderFromPool();
+            GetCollectablesFromPool();
         }
 
         private void OnPlay()

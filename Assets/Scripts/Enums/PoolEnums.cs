@@ -7,5 +7,6 @@ namespace Enums
     {
         Cylinder,
         Particle,
+        Collectable,
     }
 }
