@@ -57,6 +57,7 @@ namespace Managers
             LevelSignals.Instance.onCylinderDisapeared += OnCylinderDisapeared;
             CoreGameSignals.Instance.onPlay += OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
+            CoreGameSignals.Instance.onLevelInitialize += OnLevelInitialize;
         }
 
         private void UnsubscribeEvents()
@@ -64,6 +65,7 @@ namespace Managers
             LevelSignals.Instance.onCylinderDisapeared -= OnCylinderDisapeared;
             CoreGameSignals.Instance.onPlay -= OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
+            CoreGameSignals.Instance.onLevelInitialize -= OnLevelInitialize;
         }
 
 
@@ -163,6 +165,13 @@ namespace Managers
         private void OnResetLevel()
         {
             _isStartPressed = false;
+            nextCylinderPosY = 0;
+
+        }
+
+        private void OnLevelInitialize()
+        {
+            InitializeLevel();
 
         }
     }

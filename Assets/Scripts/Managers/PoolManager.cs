@@ -113,6 +113,8 @@ public class PoolManager : MonoBehaviour
         //reset
         ResetPool(PoolEnums.Collectable);
         ResetPool(PoolEnums.Cylinder);
+        ResetPool(PoolEnums.Obstacle);
+        ResetPool(PoolEnums.ObstacleLarge);
     }
 
     private void ResetPool(PoolEnums type)
