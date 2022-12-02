@@ -17,11 +17,6 @@ public class GameOverPanelController : MonoBehaviour
     #region SerializeField Variables
     [SerializeField] private GameObject successPanel, failPanel;
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    [SerializeField] private GameObject[] crowns;
-    [SerializeField] private Image[] stageNodes;
-    [SerializeField] private Slider slider;
-    [SerializeField] private Image sliderImage;
-
     [SerializeField] private int stageNum = 0, levelNum = 0;
 
     #endregion
@@ -63,75 +58,24 @@ public class GameOverPanelController : MonoBehaviour
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
 
-        ClearTournamentPart();
     }
 
-    private void ClearTournamentPart()
-    {
-        foreach (var i in stageNodes)
-        {
-            i.color = _data.DefaultStageColor;
-        }
-        foreach (var i in crowns)
-        {
-            i.SetActive(false);
-        }
-        sliderImage.color = _data.SuccessStageColor;
-
-    }
+   
 
     public void OnStageSuccessFul()
     {
         ++stageNum;
-        TournamentPartSuccess();
 
-        if (stageNum == stageNodes.Length - 1)
-        {
-            //LevelSignals.Instance.onFinalStage?.Invoke();
-        }
-        else if (stageNum == stageNodes.Length)
-        {
-            CoreGameSignals.Instance.onNextLevel?.Invoke();
-            SaveSignals.Instance.onSaveScore?.Invoke(++levelNum, SaveLoadStates.Level, SaveFiles.SaveFile);
-            //level'i arttýrýp, Farklý bir panelden ödül seçtirmeli veya direk menuye atmalý
-            stageNum = 0;
-        }
         SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
 
     }
 
-    private void TournamentPartSuccess()
-    {
-        for (int i = 0; i < stageNum; i++)
-        {
-            crowns[i].SetActive(true);
-            if (i == stageNodes.Length)
-            {
-                return;
-            }
-            stageNodes[i].color = _data.SuccessStageColor;
-        }
-        slider.value = _data.SliderValues[stageNum];
-        successPanel.SetActive(true);
-        failPanel.SetActive(false);
-    }
+  
 
     public void OnStageFailed()
     {
         stageNum = 0;
-        TournamentPartFail();
     }
 
-    private void TournamentPartFail()
-    {
-        for (int i = 0; i < stageNodes.Length; i++)
-        {
-            stageNodes[i].color = _data.FailStageColor;
-        }
-        sliderImage.color = _data.FailStageColor;
-        SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
 
-        successPanel.SetActive(false);
-        failPanel.SetActive(true);
-    }
 }

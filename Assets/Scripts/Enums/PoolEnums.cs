@@ -8,5 +8,6 @@ namespace Enums
         Cylinder,
         Particle,
         Collectable,
+        Obstacle,
     }
 }

@@ -403,7 +403,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5921569, g: 0.69803923, b: 0.8078432, a: 0}
+  m_BackGroundColor: {r: 0.21568629, g: 0.32941177, b: 0.5254902, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2326,8 +2326,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cylinderPrefab: {fileID: 3290074954671152442, guid: aed0a9f09d347d440932838ed3c5f627, type: 3}
   collectablePrefab: {fileID: 3611576628377436538, guid: 80f235feeec9c49439738c9df74d7126, type: 3}
+  obstaclePrefab: {fileID: 6135187810603633799, guid: 6e8437b658f63cf4c9a3f6cd6573e2b7, type: 3}
   amountCylinder: 15
   amountCollectable: 200
+  amountObstacle: 20
 --- !u!1 &749374685
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,10 +6534,6 @@ MonoBehaviour:
   successPanel: {fileID: 1870530601}
   failPanel: {fileID: 749374685}
   scoreTxt: {fileID: 8721756874357755779}
-  crowns: []
-  stageNodes: []
-  slider: {fileID: 0}
-  sliderImage: {fileID: 0}
   stageNum: 0
   levelNum: 0
 --- !u!225 &1994952899310298036

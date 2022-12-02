@@ -82,6 +82,8 @@ namespace Managers
             {
                 GetCylinderFromPool();
                 GetCollectablesFromPool();
+                GetObstaclesFromPool();
+
             }
         }
 
@@ -119,10 +121,32 @@ namespace Managers
             }
         }
 
+        private void GetObstaclesFromPool()
+        {
+            int rand = Random.Range(0, 5);
+            GameObject temp;
+            if (rand == 0)
+            {
+                temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
+            }
+            else if (rand == 1)
+            {
+                temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
+            }
+            else
+            {
+                return;
+            }
+            temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
+            temp.transform.position = new Vector3(0, (_lastCylinderPosY - (_lastYScale)), 0);
+            temp.SetActive(true);
+        }
+
         private void OnCylinderDisapeared()
         {
             GetCylinderFromPool();
             GetCollectablesFromPool();
+            GetObstaclesFromPool();
         }
 
         private void OnPlay()
