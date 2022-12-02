@@ -36,6 +36,10 @@ namespace Controllers
             {
                 PlayerSignals.Instance.onPlayerCollideWithCylinder?.Invoke(true);
             }
+            else if (other.CompareTag("Obstacle"))
+            {
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
+            }
         }
         private void OnTriggerExit(Collider other)
         {

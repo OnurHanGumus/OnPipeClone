@@ -5,8 +5,7 @@ namespace Enums
     [Serializable]
     public enum ScoreTypeEnums
     {
-        Gem,
+        Gold,
         Score,
-        EnemyScore,
     }
 }

@@ -63,11 +63,4 @@ public class StartPanelController : MonoBehaviour
         //UpdateTexts();
     }
 
-    public void OnScoreUpdate(ScoreTypeEnums type, int newValue)
-    {
-        if (type.Equals(ScoreTypeEnums.Gem))
-        {
-            gemText.text = newValue.ToString();
-        }
-    }
 }

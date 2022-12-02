@@ -89,7 +89,6 @@ namespace Controllers
         public void OnPlay()
         {
             _isNotStarted = false;
-            _rig.useGravity = true;
         }
 
         public void OnCollideCylinder(bool isTrue)
@@ -99,11 +98,7 @@ namespace Controllers
         public void OnReset()
         {
             _isNotStarted = true;
-            _rig.useGravity = false;
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);
-            _rig.velocity = Vector3.zero;
-            _rig.angularVelocity = Vector3.zero;
-            _rig.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }

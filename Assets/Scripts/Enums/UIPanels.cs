@@ -8,10 +8,8 @@ namespace Enums
         StartPanel,
         LevelPanel,
         PausePanel,
-        //MiniGamePanel,
         HighScorePanel,
         OptionsPanel,
         GameOverPanel,
-        GemPanel,
     }
 }

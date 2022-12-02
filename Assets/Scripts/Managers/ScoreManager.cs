@@ -59,8 +59,7 @@ namespace Managers
         #endregion
         private void Init()
         {
-            Gem = InitializeValue(SaveLoadStates.Gem);
-            UISignals.Instance.onSetChangedText?.Invoke(ScoreTypeEnums.Gem, Gem);
+
         }
         private void Start()
         {
@@ -103,28 +102,12 @@ namespace Managers
                 PlayerScore += amount;
                 UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
             }
-            else if (type.Equals(ScoreTypeEnums.EnemyScore))
-            {
-                EnemyScore += amount;
-                UISignals.Instance.onSetChangedText?.Invoke(type, EnemyScore);
-            }
-            else if (type.Equals(ScoreTypeEnums.Gem))
-            {
-                Gem += amount;
-                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
-                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
-            }
 
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
         {
-            if (type.Equals(ScoreTypeEnums.Gem))
-            {
-                Gem -= amount;
-                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
-                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
-            }
+
         }
 
 
@@ -147,11 +130,11 @@ namespace Managers
         {
             if (PlayerScore >= EnemyScore)
             {
-                CoreGameSignals.Instance.onStageSuccessful?.Invoke();
+                CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
             }
             else
             {
-                CoreGameSignals.Instance.onStageFailed?.Invoke();
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
             }
         }
     }
