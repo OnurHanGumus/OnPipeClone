@@ -16,12 +16,13 @@ public class GameOverPanelController : MonoBehaviour
     #endregion
     #region SerializeField Variables
     [SerializeField] private GameObject successPanel, failPanel;
-    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshProUGUI scoreText, bestScoreText, levelText;
     [SerializeField] private int stageNum = 0, levelNum = 0;
 
     #endregion
     #region Private Variables
     private UIData _data;
+    private int _highScore;
     #endregion
     #endregion
 
@@ -44,12 +45,7 @@ public class GameOverPanelController : MonoBehaviour
     {
         stageNum = SaveSignals.Instance.onGetScore(SaveLoadStates.StageNum, SaveFiles.SaveFile);
         levelNum = SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
-    }
-
-    public void CloseGameOverPanel()
-    {
-        UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
-        UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
+        _highScore = SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
 
     public void MenuBtn()
@@ -65,17 +61,21 @@ public class GameOverPanelController : MonoBehaviour
     public void OnStageSuccessFul()
     {
         ++stageNum;
-
         SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
-
+        bestScoreText.text = _highScore.ToString();
+        levelText.text = "LEVEL " + levelNum;
+        successPanel.SetActive(true);
+        failPanel.SetActive(false);
     }
-
-  
 
     public void OnStageFailed()
     {
-        stageNum = 0;
+        bestScoreText.text = _highScore.ToString();
+        levelText.text = "LEVEL " + levelNum;
+        successPanel.SetActive(false);
+        failPanel.SetActive(true);
     }
+
 
 
 }
