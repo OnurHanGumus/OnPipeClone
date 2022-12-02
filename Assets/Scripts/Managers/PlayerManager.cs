@@ -22,6 +22,7 @@ namespace Managers
 
         #region Serialized Variables
 
+        [SerializeField] private PlayerMeshController meshController;
         #endregion
 
         #region Private Variables
@@ -60,8 +61,10 @@ namespace Managers
             CoreGameSignals.Instance.onPlayPressed += _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
+            CoreGameSignals.Instance.onRestartLevel += meshController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
-
+            CoreGameSignals.Instance.onLevelFailed += meshController.OnLevelFailed;
+            CoreGameSignals.Instance.onLevelFailed += _movementController.OnLevelFailed;
             PlayerSignals.Instance.onPlayerCollideWithCylinder += _movementController.OnCollideCylinder;
 
         }
@@ -76,8 +79,10 @@ namespace Managers
             CoreGameSignals.Instance.onPlayPressed -= _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
+            CoreGameSignals.Instance.onRestartLevel -= meshController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
-
+            CoreGameSignals.Instance.onLevelFailed -= meshController.OnLevelFailed;
+            CoreGameSignals.Instance.onLevelFailed -= _movementController.OnLevelFailed;
             PlayerSignals.Instance.onPlayerCollideWithCylinder -= _movementController.OnCollideCylinder;
 
         }

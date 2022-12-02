@@ -9,5 +9,6 @@ namespace Data.ValueObject
         public float InitializePosX = -3f, InitializePosY = 1.2f;
         public float SpeedY = 5;
         public float SmallingTime = 1;
+        public float FailedSlowValue = 0.1f;
     }
 }

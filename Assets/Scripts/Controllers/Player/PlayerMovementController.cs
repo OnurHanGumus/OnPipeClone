@@ -6,6 +6,7 @@ using Managers;
 using Signals;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 namespace Controllers
 {
@@ -25,6 +26,7 @@ namespace Controllers
         private bool _isMinimizable = true;
 
         private bool _isNotStarted = false;
+        private bool _isLevelFailed = false;
 
 
 
@@ -46,14 +48,33 @@ namespace Controllers
 
         private void FixedUpdate()
         {
+            MovePlayer();
+            ScalePlayer();
+        }
 
+        private void MovePlayer()
+        {
             if (_isNotStarted)
             {
                 return;
             }
-            _rig.velocity = new Vector3(0, _data.SpeedY, 0);
 
-            
+            if (_isLevelFailed)
+            {
+                if (_rig.velocity.y < 0)
+                {
+                    return;
+                }
+                _rig.velocity -= new Vector3(0, _data.FailedSlowValue, 0);
+            }
+            else
+            {
+                _rig.velocity = new Vector3(0, _data.SpeedY, 0);
+            }
+        }
+
+        private void ScalePlayer()
+        {
             if (_isClicked)
             {
                 if (!_isMinimizable)
@@ -61,8 +82,8 @@ namespace Controllers
                     return;
                 }
                 float currentScale = playerTransform.localScale.x;
-                float newValue = currentScale - (0.02f * (1/_data.SmallingTime));
-                playerTransform.localScale = new Vector3(newValue, newValue, newValue);
+                float newScale = currentScale - (0.02f * (1 / _data.SmallingTime));
+                playerTransform.localScale = new Vector3(newScale, newScale, newScale);
             }
             else
             {
@@ -95,9 +116,15 @@ namespace Controllers
         {
             _isMinimizable = !isTrue;
         }
+        public void OnLevelFailed()
+        {
+            _isLevelFailed = true;
+        }
         public void OnReset()
         {
             _isNotStarted = true;
+            _isLevelFailed = false;
+
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);
         }
     }
