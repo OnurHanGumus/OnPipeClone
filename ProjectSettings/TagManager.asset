@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cylinder
   - CollectableBlocks
+  - CollectableDeactivator
   layers:
   - Default
   - TransparentFX

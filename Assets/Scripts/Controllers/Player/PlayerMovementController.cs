@@ -66,7 +66,7 @@ namespace Controllers
             }
             else
             {
-                playerTransform.localScale = new Vector3(0.38f, 0.25f, 0.38f);
+                playerTransform.localScale = new Vector3(1f, 1f, 1f);
                 _isMinimizable = true;
             }
         }
