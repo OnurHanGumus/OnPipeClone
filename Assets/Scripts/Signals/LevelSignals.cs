@@ -11,6 +11,7 @@ namespace Signals
     {
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
         public UnityAction onCylinderDisapeared = delegate { };
+        public UnityAction onDrinkScoreComplated = delegate { };
         public Func<Transform> onGetTransform = delegate { return null; };
     }
 }

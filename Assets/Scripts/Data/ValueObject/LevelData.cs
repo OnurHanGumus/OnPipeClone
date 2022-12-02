@@ -11,5 +11,7 @@ namespace Data.ValueObject
         public int CylinderMinYScale = 2, CylinderMaxYScale = 4;
         public int RowWeight = 4;
         public float DistanceBetweenBlocks = 1/3f;
+
+        public int PlayerDrinkScoreIncreaseValue = 2, PlayerDrinkScoreMaksValue = 100; 
     }
 }

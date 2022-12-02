@@ -15,10 +15,11 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI goText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     #endregion
     #region Private Variables
     private LevelData _data;
+    private int _score;
 
     #endregion
     #endregion
@@ -33,18 +34,16 @@ public class LevelPanelController : MonoBehaviour
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
     
-    public void OnPlayPressed()
+    public void OnPlayerInteractedWithCollectable()
     {
-        //StartCoroutine(StartDelay());
+        _score += _data.PlayerDrinkScoreIncreaseValue;
+        scoreText.text = _score.ToString() + "/100";
+
+        if (_score >= _data.PlayerDrinkScoreMaksValue)
+        {
+            LevelSignals.Instance.onDrinkScoreComplated?.Invoke();
+        }
     }
 
-    //private IEnumerator StartDelay()
-    //{
-    //    //yield return new WaitForSeconds(_data.StartDelay);
-    //    //goText.DOFade(1, _data.GoTextFadeTime);
-    //    //CoreGameSignals.Instance.onPlay?.Invoke();
-    //    //yield return new WaitForSeconds(_data.GoTextShowTime);
-    //    //goText.DOFade(0, _data.GoTextFadeTime);
-    //}
 
 }

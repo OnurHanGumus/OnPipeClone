@@ -40,6 +40,10 @@ namespace Controllers
             {
                 CoreGameSignals.Instance.onLevelFailed?.Invoke();
             }
+            else if (other.CompareTag("CollectableBlocks"))
+            {
+                PlayerSignals.Instance.onPlayerInteractedWithCollectable?.Invoke();
+            }
         }
         private void OnTriggerExit(Collider other)
         {

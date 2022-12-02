@@ -55,14 +55,17 @@ namespace Managers
         private void SubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared += OnCylinderDisapeared;
+            LevelSignals.Instance.onDrinkScoreComplated += OnDrinkValueComplated;
             CoreGameSignals.Instance.onPlay += OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
             CoreGameSignals.Instance.onLevelInitialize += OnLevelInitialize;
+
         }
 
         private void UnsubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared -= OnCylinderDisapeared;
+            LevelSignals.Instance.onDrinkScoreComplated -= OnDrinkValueComplated;
             CoreGameSignals.Instance.onPlay -= OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
             CoreGameSignals.Instance.onLevelInitialize -= OnLevelInitialize;
@@ -173,6 +176,11 @@ namespace Managers
         {
             InitializeLevel();
 
+        }
+
+        private void OnDrinkValueComplated()
+        {
+            // sütun oluþturmayý durdur, finish objesini oluþtur.
         }
     }
 }
