@@ -104,12 +104,12 @@ namespace Controllers
         }
         public void OnPlayPressed()
         {
-            //transform.DOMoveX(_data.StartPosX, _data.PlayerInitializeAnimDelay).SetEase(Ease.InOutBack);
+            _isNotStarted = false;
         }
 
         public void OnPlay()
         {
-            _isNotStarted = false;
+            //_isNotStarted = false;
         }
 
         public void OnCollideCylinder(bool isTrue)
@@ -122,7 +122,7 @@ namespace Controllers
         }
         public void OnReset()
         {
-            _isNotStarted = true;
+            //_isNotStarted = true;
             _isLevelFailed = false;
 
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);

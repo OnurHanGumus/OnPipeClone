@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CD_Player
   m_EditorClassIdentifier: 
   Data:
-    InitializePosX: -3
-    InitializePosY: 1.2
+    InitializePosX: 0
+    InitializePosY: 0
     SpeedY: 2
     SmallingTime: 0.5
     FailedSlowValue: 0.02

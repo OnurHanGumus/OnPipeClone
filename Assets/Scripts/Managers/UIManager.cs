@@ -33,8 +33,8 @@ namespace Managers
             UISignals.Instance.onOpenPanel += OnOpenPanel;
             UISignals.Instance.onClosePanel += OnClosePanel;
             //UISignals.Instance.onSetChangedText += startPanelController.OnScoreUpdate;
-            CoreGameSignals.Instance.onPlayPressed += OnPlayPressed;
-            CoreGameSignals.Instance.onPlayPressed += levelPanelController.OnPlayPressed;
+            CoreGameSignals.Instance.onPlay += OnPlay;
+
             //CoreGameSignals.Instance.onPlay += startPanelController.OnPlay;
             CoreGameSignals.Instance.onLevelFailed += OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed += gameOverPanelController.OnStageFailed;
@@ -49,9 +49,8 @@ namespace Managers
             UISignals.Instance.onOpenPanel -= OnOpenPanel;
             UISignals.Instance.onClosePanel -= OnClosePanel;
             //UISignals.Instance.onSetChangedText -= startPanelController.OnScoreUpdate;
-            CoreGameSignals.Instance.onPlayPressed -= OnPlayPressed;
-            CoreGameSignals.Instance.onPlayPressed += levelPanelController.OnPlayPressed; ;
-            //CoreGameSignals.Instance.onPlay -= startPanelController.OnPlay;
+
+            CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed -= gameOverPanelController.OnStageFailed;
             CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
@@ -77,7 +76,7 @@ namespace Managers
             uiPanelController.CloseMenu(panelParam);
         }
 
-        private void OnPlayPressed()
+        private void OnPlay()
         {
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.LevelPanel);
@@ -97,7 +96,7 @@ namespace Managers
 
         public void Play()
         {
-            CoreGameSignals.Instance.onPlayPressed?.Invoke();
+            CoreGameSignals.Instance.onPlay?.Invoke();
         }
         public void OptionsButton()
         {

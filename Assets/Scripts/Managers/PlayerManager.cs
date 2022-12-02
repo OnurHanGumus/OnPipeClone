@@ -16,7 +16,6 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
-        public bool IsTimeUp = false;
 
         #endregion
 
@@ -39,7 +38,6 @@ namespace Managers
 
         private void Init()
         {
-
             _data = GetData();
             _movementController = GetComponent<PlayerMovementController>();
         }
@@ -58,7 +56,6 @@ namespace Managers
 
 
             CoreGameSignals.Instance.onPlay += _movementController.OnPlay;
-            CoreGameSignals.Instance.onPlayPressed += _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel += meshController.OnRestartLevel;
@@ -76,7 +73,6 @@ namespace Managers
 
 
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
-            CoreGameSignals.Instance.onPlayPressed -= _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= meshController.OnRestartLevel;
@@ -97,11 +93,11 @@ namespace Managers
 
         private void OnPlay()
         {
-            IsTimeUp = false;
+            
         }
         private void OnResetLevel()
         {
-            IsTimeUp = false;
+            
         }
     }
 }

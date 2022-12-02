@@ -55,14 +55,14 @@ namespace Managers
         private void SubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared += OnCylinderDisapeared;
-            CoreGameSignals.Instance.onPlayPressed += OnStartPressed;
+            CoreGameSignals.Instance.onPlay += OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
         }
 
         private void UnsubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared -= OnCylinderDisapeared;
-            CoreGameSignals.Instance.onPlayPressed -= OnStartPressed;
+            CoreGameSignals.Instance.onPlay -= OnStartPressed;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
         }
 
