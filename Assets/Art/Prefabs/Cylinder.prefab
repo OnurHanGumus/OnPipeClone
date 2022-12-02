@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4e072505a32c6244e8ffa9ca033283e6, type: 2}
     - target: {fileID: 8698673038192981634, guid: 7c13a817ac805c24c8d0bd91a3e7b4df, type: 3}
       propertyPath: m_Name
-      value: Cylinder (1)
+      value: CylinderMesh
       objectReference: {fileID: 0}
     - target: {fileID: 8698673038192981638, guid: 7c13a817ac805c24c8d0bd91a3e7b4df, type: 3}
       propertyPath: m_RootOrder

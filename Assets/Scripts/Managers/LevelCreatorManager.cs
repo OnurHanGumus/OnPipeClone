@@ -29,6 +29,7 @@ namespace Managers
         private LevelData _data;
         private float _lastXZScale = 0, _lastYScale = 0;
         private float _lastCylinderPosY = 0;
+        private bool _isStartPressed = false;
         #endregion
 
         #endregion
@@ -54,11 +55,15 @@ namespace Managers
         private void SubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared += OnCylinderDisapeared;
+            CoreGameSignals.Instance.onPlayPressed += OnStartPressed;
+            CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
         }
 
         private void UnsubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared -= OnCylinderDisapeared;
+            CoreGameSignals.Instance.onPlayPressed -= OnStartPressed;
+            CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
         }
 
 
@@ -83,7 +88,6 @@ namespace Managers
                 GetCylinderFromPool();
                 GetCollectablesFromPool();
                 GetObstaclesFromPool();
-
             }
         }
 
@@ -124,20 +128,20 @@ namespace Managers
         private void GetObstaclesFromPool()
         {
             int rand = Random.Range(0, 5);
+            Debug.Log(rand);
             GameObject temp;
             if (rand == 0)
             {
                 temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
             }
-            else if (rand == 1)
+            else if (rand == 1 &&_isStartPressed)
             {
-                temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
+                temp = PoolSignals.Instance.onGetObject(PoolEnums.ObstacleLarge);
             }
             else
             {
                 return;
             }
-            temp = PoolSignals.Instance.onGetObject(PoolEnums.Obstacle);
             temp.transform.position = new Vector3(0, (_lastCylinderPosY - (_lastYScale)), 0);
             temp.SetActive(true);
         }
@@ -152,8 +156,14 @@ namespace Managers
         private void OnPlay()
         {
         }
+        private void OnStartPressed()
+        {
+            _isStartPressed = true;
+        }
         private void OnResetLevel()
         {
+            _isStartPressed = false;
+
         }
     }
 }

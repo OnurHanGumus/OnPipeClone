@@ -28,5 +28,9 @@ public class CylinderDeactivator : MonoBehaviour
         {
             other.gameObject.SetActive(false);
         }
+        else if (other.CompareTag("Obstacle"))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 }

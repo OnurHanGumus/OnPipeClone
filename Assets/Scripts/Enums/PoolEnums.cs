@@ -9,5 +9,6 @@ namespace Enums
         Particle,
         Collectable,
         Obstacle,
+        ObstacleLarge,
     }
 }
