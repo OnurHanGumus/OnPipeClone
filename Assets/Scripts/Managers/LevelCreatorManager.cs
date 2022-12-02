@@ -27,7 +27,7 @@ namespace Managers
 
         #region Private Variables
         private LevelData _data;
-        private float _lastXZScale = 0;
+        private float _lastXZScale = 0, _lastYScale = 0;
         private float _lastCylinderPosY = 0;
         #endregion
 
@@ -99,8 +99,9 @@ namespace Managers
             _lastXZScale = xzScale;
 
             temp.transform.localScale = new Vector3(xzScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), xzScale);
-
             temp.transform.position = new Vector3(0, nextCylinderPosY + (temp.transform.localScale.y), 0);
+
+            _lastYScale = temp.transform.localScale.y;
             _lastCylinderPosY = temp.transform.position.y;
 
             temp.SetActive(true);
@@ -109,11 +110,13 @@ namespace Managers
 
         private void GetCollectablesFromPool()
         {
-            GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Collectable);
-            temp.transform.position = new Vector3(0, _lastCylinderPosY, 0);
-            temp.transform.localScale = new Vector3(_lastXZScale, _lastXZScale, _lastXZScale);
-            temp.SetActive(true);
-
+            for (int i = 0; i < (_lastYScale / _lastXZScale) * _data.RowWeight; i++)
+            {
+                GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Collectable);
+                temp.transform.position = new Vector3(0, (_lastCylinderPosY - (_lastYScale/2)) + (((float)i * _data.DistanceBetweenBlocks))*_lastXZScale, 0);
+                temp.transform.localScale = new Vector3(_lastXZScale, _lastXZScale, _lastXZScale);
+                temp.SetActive(true);
+            }
         }
 
         private void OnCylinderDisapeared()

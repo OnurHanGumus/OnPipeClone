@@ -9,5 +9,7 @@ namespace Data.ValueObject
         public int InitializeCylinderCount = 5;
         public float CylinderMinXZScale = 0.5f, CylinderMaxXZScale = 1f;
         public int CylinderMinYScale = 2, CylinderMaxYScale = 4;
+        public int RowWeight = 4;
+        public float DistanceBetweenBlocks = 1/3f;
     }
 }

@@ -61,7 +61,7 @@ namespace Controllers
                     return;
                 }
                 float currentScale = playerTransform.localScale.x;
-                float newValue = currentScale - 0.02f;
+                float newValue = currentScale - (0.02f * (1/_data.SmallingTime));
                 playerTransform.localScale = new Vector3(newValue, newValue, newValue);
             }
             else

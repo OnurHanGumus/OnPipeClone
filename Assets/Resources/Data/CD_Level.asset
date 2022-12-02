@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CD_Level
   m_EditorClassIdentifier: 
   Data:
-    InitializeCylinderCount: 5
+    InitializeCylinderCount: 7
     CylinderMinXZScale: 0.5
     CylinderMaxXZScale: 1
     CylinderMinYScale: 2
     CylinderMaxYScale: 4
+    RowWeight: 4

@@ -18,3 +18,4 @@ MonoBehaviour:
     InitializePosX: -3
     InitializePosY: 1.2
     SpeedY: 2
+    SmallingTime: 0.5
