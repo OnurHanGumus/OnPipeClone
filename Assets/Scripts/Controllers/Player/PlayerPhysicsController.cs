@@ -44,6 +44,10 @@ namespace Controllers
             {
                 PlayerSignals.Instance.onPlayerInteractedWithCollectable?.Invoke();
             }
+            else if (other.CompareTag("Finish"))
+            {
+                CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
+            }
         }
         private void OnTriggerExit(Collider other)
         {

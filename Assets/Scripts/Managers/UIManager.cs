@@ -44,6 +44,7 @@ namespace Managers
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
 
             PlayerSignals.Instance.onPlayerInteractedWithCollectable += levelPanelController.OnPlayerInteractedWithCollectable;
+            CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
         }
 
         private void UnsubscribeEvents()
@@ -61,6 +62,7 @@ namespace Managers
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
 
             PlayerSignals.Instance.onPlayerInteractedWithCollectable -= levelPanelController.OnPlayerInteractedWithCollectable;
+            CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
         }
 
         private void OnDisable()

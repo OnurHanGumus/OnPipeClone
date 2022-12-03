@@ -20,6 +20,7 @@ public class LevelPanelController : MonoBehaviour
     #region Private Variables
     private LevelData _data;
     private int _score;
+    private bool _isDrinkScoreComplated = false;
 
     #endregion
     #endregion
@@ -38,11 +39,22 @@ public class LevelPanelController : MonoBehaviour
     {
         _score += _data.PlayerDrinkScoreIncreaseValue;
         scoreText.text = _score.ToString() + "/100";
-
+        if (_isDrinkScoreComplated)
+        {
+            return;
+        }
         if (_score >= _data.PlayerDrinkScoreMaksValue)
         {
             LevelSignals.Instance.onDrinkScoreComplated?.Invoke();
+            _isDrinkScoreComplated = true;
         }
+    }
+
+    public void OnRestartLevel()
+    {
+        _isDrinkScoreComplated = false;
+        _score = 0;
+        scoreText.text = _score.ToString() + "/100";
     }
 
 

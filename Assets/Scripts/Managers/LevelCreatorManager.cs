@@ -30,6 +30,7 @@ namespace Managers
         private float _lastXZScale = 0, _lastYScale = 0;
         private float _lastCylinderPosY = 0;
         private bool _isStartPressed = false;
+        private bool _isDrinkScoreComplated = false;
         #endregion
 
         #endregion
@@ -133,7 +134,6 @@ namespace Managers
         private void GetObstaclesFromPool()
         {
             int rand = Random.Range(0, 5);
-            Debug.Log(rand);
             GameObject temp;
             if (rand == 0)
             {
@@ -151,8 +151,19 @@ namespace Managers
             temp.SetActive(true);
         }
 
+        private void GetFinishObjectFromPool()
+        {
+            GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.FinishObject);
+            temp.transform.position = new Vector3(0, nextCylinderPosY + (temp.transform.localScale.y), 0);
+            temp.SetActive(true);
+        }
+
         private void OnCylinderDisapeared()
         {
+            if (_isDrinkScoreComplated)
+            {
+                return;
+            }
             GetCylinderFromPool();
             GetCollectablesFromPool();
             GetObstaclesFromPool();
@@ -169,6 +180,8 @@ namespace Managers
         {
             _isStartPressed = false;
             nextCylinderPosY = 0;
+            _isDrinkScoreComplated = false;
+
 
         }
 
@@ -181,6 +194,8 @@ namespace Managers
         private void OnDrinkValueComplated()
         {
             // sütun oluþturmayý durdur, finish objesini oluþtur.
+            _isDrinkScoreComplated = true;
+            GetFinishObjectFromPool();
         }
     }
 }

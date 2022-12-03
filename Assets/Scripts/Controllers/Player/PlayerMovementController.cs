@@ -26,7 +26,7 @@ namespace Controllers
         private bool _isMinimizable = true;
 
         private bool _isNotStarted = false;
-        private bool _isLevelFailed = false;
+        private bool _isGameOver = false;
 
 
 
@@ -59,7 +59,7 @@ namespace Controllers
                 return;
             }
 
-            if (_isLevelFailed)
+            if (_isGameOver)
             {
                 if (_rig.velocity.y < 0)
                 {
@@ -118,12 +118,16 @@ namespace Controllers
         }
         public void OnLevelFailed()
         {
-            _isLevelFailed = true;
+            _isGameOver = true;
+        }
+        public void OnLevelSuccess()
+        {
+            _isGameOver = true;
         }
         public void OnReset()
         {
             //_isNotStarted = true;
-            _isLevelFailed = false;
+            _isGameOver = false;
 
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);
         }

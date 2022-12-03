@@ -62,6 +62,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
             CoreGameSignals.Instance.onLevelFailed += meshController.OnLevelFailed;
             CoreGameSignals.Instance.onLevelFailed += _movementController.OnLevelFailed;
+            CoreGameSignals.Instance.onLevelSuccessful += _movementController.OnLevelSuccess;
             PlayerSignals.Instance.onPlayerCollideWithCylinder += _movementController.OnCollideCylinder;
 
         }
@@ -79,6 +80,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
             CoreGameSignals.Instance.onLevelFailed -= meshController.OnLevelFailed;
             CoreGameSignals.Instance.onLevelFailed -= _movementController.OnLevelFailed;
+            CoreGameSignals.Instance.onLevelSuccessful -= _movementController.OnLevelSuccess;
             PlayerSignals.Instance.onPlayerCollideWithCylinder -= _movementController.OnCollideCylinder;
 
         }

@@ -125,17 +125,5 @@ namespace Managers
         {
             return SaveSignals.Instance.onGetScore(type, SaveFiles.SaveFile);
         }
-
-        private void OnTimeUp()
-        {
-            if (PlayerScore >= EnemyScore)
-            {
-                CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
-            }
-            else
-            {
-                CoreGameSignals.Instance.onLevelFailed?.Invoke();
-            }
-        }
     }
 }

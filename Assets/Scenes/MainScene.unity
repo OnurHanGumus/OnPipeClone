@@ -2669,10 +2669,12 @@ MonoBehaviour:
   collectablePrefab: {fileID: 3611576628377436538, guid: 80f235feeec9c49439738c9df74d7126, type: 3}
   obstaclePrefab: {fileID: 6135187810603633799, guid: 6e8437b658f63cf4c9a3f6cd6573e2b7, type: 3}
   obstacleLargePrefab: {fileID: 1139959672214789299, guid: d8a9b6cb6feeaa54595b694756487e28, type: 3}
+  finishPrefab: {fileID: 3907337972470028327, guid: c97ad753b7e6e244fb1f6d3bf5494841, type: 3}
   amountCylinder: 50
   amountCollectable: 200
   amountObstacle: 20
   amountObstacleLarge: 20
+  amountFinishObject: 2
 --- !u!1 &749374685
 GameObject:
   m_ObjectHideFlags: 0

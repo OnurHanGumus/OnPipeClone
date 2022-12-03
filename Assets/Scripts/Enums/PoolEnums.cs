@@ -10,5 +10,6 @@ namespace Enums
         Collectable,
         Obstacle,
         ObstacleLarge,
+        FinishObject,
     }
 }
