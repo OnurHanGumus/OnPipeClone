@@ -48,7 +48,16 @@ public class GameOverPanelController : MonoBehaviour
         _highScore = SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
 
-    public void MenuBtn()
+    public void NextLevelButton()
+    {
+        CoreGameSignals.Instance.onRestartLevel?.Invoke();
+        CoreGameSignals.Instance.onNextLevel?.Invoke();
+        UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
+        UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
+
+    }
+
+    public void TryAgainButton()
     {
         CoreGameSignals.Instance.onRestartLevel?.Invoke();
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
@@ -56,7 +65,7 @@ public class GameOverPanelController : MonoBehaviour
 
     }
 
-   
+
 
     public void OnStageSuccessFul()
     {

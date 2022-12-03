@@ -32,37 +32,37 @@ namespace Managers
         {
             UISignals.Instance.onOpenPanel += OnOpenPanel;
             UISignals.Instance.onClosePanel += OnClosePanel;
-            //UISignals.Instance.onSetChangedText += startPanelController.OnScoreUpdate;
-            CoreGameSignals.Instance.onPlay += OnPlay;
 
-            //CoreGameSignals.Instance.onPlay += startPanelController.OnPlay;
+            CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onLevelFailed += OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed += gameOverPanelController.OnStageFailed;
             CoreGameSignals.Instance.onLevelSuccessful += OnLevelSuccessful;
             CoreGameSignals.Instance.onLevelSuccessful += gameOverPanelController.OnStageSuccessFul;
-            //CoreGameSignals.Instance.onRestartLevel += startPanelController.OnRestartLevel;
+            CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
+            CoreGameSignals.Instance.onNextLevel += levelPanelController.OnNextLevel;
+
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
 
             PlayerSignals.Instance.onPlayerInteractedWithCollectable += levelPanelController.OnPlayerInteractedWithCollectable;
-            CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
+
         }
 
         private void UnsubscribeEvents()
         {
             UISignals.Instance.onOpenPanel -= OnOpenPanel;
             UISignals.Instance.onClosePanel -= OnClosePanel;
-            //UISignals.Instance.onSetChangedText -= startPanelController.OnScoreUpdate;
 
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed -= gameOverPanelController.OnStageFailed;
             CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
             CoreGameSignals.Instance.onLevelSuccessful -= gameOverPanelController.OnStageSuccessFul;
-            //CoreGameSignals.Instance.onRestartLevel -= startPanelController.OnRestartLevel;
+            CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
+            CoreGameSignals.Instance.onNextLevel -= levelPanelController.OnNextLevel;
+
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
 
             PlayerSignals.Instance.onPlayerInteractedWithCollectable -= levelPanelController.OnPlayerInteractedWithCollectable;
-            CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
         }
 
         private void OnDisable()

@@ -15,11 +15,13 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI drinkScoreText;
+    [SerializeField] private TextMeshProUGUI levelText, scoreText;
     #endregion
     #region Private Variables
     private LevelData _data;
-    private int _score;
+    private int _drinkScore;
+    private int _levelId, _score;
     private bool _isDrinkScoreComplated = false;
 
     #endregion
@@ -27,35 +29,51 @@ public class LevelPanelController : MonoBehaviour
     private void Awake()
     {
         Init();
+        UpdateLevelText();
+
     }
     private void Init()
     {
         _data = GetData();
-
+        _levelId = GetLevelId();
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
-    
+    private int GetLevelId() => SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
     public void OnPlayerInteractedWithCollectable()
     {
-        _score += _data.PlayerDrinkScoreIncreaseValue;
-        scoreText.text = _score.ToString() + "/100";
+        _drinkScore += _data.PlayerDrinkScoreIncreaseValue;
+        drinkScoreText.text = _drinkScore.ToString() + "/100";
+
+        _score += _data.PlayerScoreIncreaseValue;
+        scoreText.text = _score.ToString();
         if (_isDrinkScoreComplated)
         {
             return;
         }
-        if (_score >= _data.PlayerDrinkScoreMaksValue)
+        if (_drinkScore >= _data.PlayerDrinkScoreMaksValue)
         {
             LevelSignals.Instance.onDrinkScoreComplated?.Invoke();
             _isDrinkScoreComplated = true;
         }
     }
+    private void UpdateLevelText()
+    {
+        levelText.text = "LEVEL " + (_levelId + 1);
+
+    }
+    public void OnNextLevel()
+    {
+        ++_levelId;
+        UpdateLevelText();
+    }
+
 
     public void OnRestartLevel()
     {
         _isDrinkScoreComplated = false;
+        _drinkScore = 0;
+        drinkScoreText.text = _drinkScore.ToString() + "/100";
         _score = 0;
-        scoreText.text = _score.ToString() + "/100";
+        scoreText.text = _score.ToString();
     }
-
-
 }

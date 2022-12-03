@@ -114,7 +114,7 @@ namespace Managers
             _levelID++;
             CoreGameSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
-            CoreGameSignals.Instance.onLevelInitialize?.Invoke();
+            SaveSignals.Instance.onSaveScore?.Invoke(_levelID,SaveLoadStates.Level, SaveFiles.SaveFile);
         }
 
         private void OnRestartLevel()

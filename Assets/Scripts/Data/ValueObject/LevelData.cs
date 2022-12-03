@@ -12,6 +12,7 @@ namespace Data.ValueObject
         public int RowWeight = 4;
         public float DistanceBetweenBlocks = 1/3f;
 
-        public int PlayerDrinkScoreIncreaseValue = 2, PlayerDrinkScoreMaksValue = 100; 
+        public int PlayerDrinkScoreIncreaseValue = 2, PlayerDrinkScoreMaksValue = 100;
+        public int PlayerScoreIncreaseValue = 1;
     }
 }
