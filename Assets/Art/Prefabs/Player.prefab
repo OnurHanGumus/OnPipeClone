@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 771546630438676207}
   - component: {fileID: 771546630438676206}
   - component: {fileID: 771546630438676205}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CylinderDeactivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771546631327930839}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: PlayerPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 771546631647775012}
   - component: {fileID: 771546631647775010}
   - component: {fileID: 771546631647775011}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CollectableDeactivator
   m_TagString: CollectableDeactivator
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 771546632085352621}
   - component: {fileID: 771546632085352617}
   - component: {fileID: 771546632085352623}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 1555581503425989735}
   - component: {fileID: 734918206176353850}
   - component: {fileID: 7189726061740683187}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 9119455607950259785}
   - component: {fileID: 9119455607234948450}
   - component: {fileID: 9119455607234948449}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83b1622bf1aedd408d474984cfeb6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsTimeUp: 0
+  meshController: {fileID: 0}
 --- !u!114 &9119455607234948449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455606066810876}
   - component: {fileID: 9119455606066810879}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455606085005078}
   - component: {fileID: 9119455606085005073}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 8
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455606509288290}
   - component: {fileID: 9119455606509288301}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 5
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455606615669989}
   - component: {fileID: 9119455606615669988}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 6
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455607286788951}
   - component: {fileID: 9119455607286788950}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9119455607326440103}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455607350155694}
   - component: {fileID: 9119455607350155689}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 7
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455607801955936}
   - component: {fileID: 9119455607801955939}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119455607888196798}
   - component: {fileID: 9119455607888196793}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 4
   m_TagString: Player
   m_Icon: {fileID: 0}

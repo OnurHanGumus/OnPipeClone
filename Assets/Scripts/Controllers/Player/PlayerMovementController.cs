@@ -110,6 +110,7 @@ namespace Controllers
         public void OnPlay()
         {
             //_isNotStarted = false;
+
         }
 
         public void OnCollideCylinder(bool isTrue)
@@ -128,7 +129,6 @@ namespace Controllers
         {
             //_isNotStarted = true;
             _isGameOver = false;
-
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);
         }
     }
