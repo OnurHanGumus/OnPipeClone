@@ -30,8 +30,7 @@ namespace Managers
         #region Private Variables
 
         private int _playerScore;
-        private int _enemyScore;
-        private int _gem;
+        private int _gold;
         [ShowInInspector]
         public int PlayerScore
         {
@@ -40,16 +39,12 @@ namespace Managers
         }
         [ShowInInspector]
 
-        public int EnemyScore
-        {
-            get { return _enemyScore; }
-            set { _enemyScore = value; }
-        }
 
-        public int Gem
+
+        public int Gold
         {
-            get { return _gem; }
-            set { _gem = value; }
+            get { return _gold; }
+            set { _gold = value; }
         }
 
 
@@ -102,7 +97,6 @@ namespace Managers
                 PlayerScore += amount;
                 UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
             }
-
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
@@ -119,7 +113,6 @@ namespace Managers
         private void OnRestartLevel()
         {
             PlayerScore = 0;
-            EnemyScore = 0;
         }
         private int InitializeValue(SaveLoadStates type)
         {

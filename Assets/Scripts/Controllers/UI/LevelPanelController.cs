@@ -39,13 +39,18 @@ public class LevelPanelController : MonoBehaviour
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
     private int GetLevelId() => SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
+
+    private void UpdateLevelText()
+    {
+        levelText.text = "LEVEL " + (_levelId + 1);
+
+    }
+
     public void OnPlayerInteractedWithCollectable()
     {
         _drinkScore += _data.PlayerDrinkScoreIncreaseValue;
         drinkScoreText.text = _drinkScore.ToString() + "/100";
 
-        _score += _data.PlayerScoreIncreaseValue;
-        scoreText.text = _score.ToString();
         if (_isDrinkScoreComplated)
         {
             return;
@@ -56,11 +61,17 @@ public class LevelPanelController : MonoBehaviour
             _isDrinkScoreComplated = true;
         }
     }
-    private void UpdateLevelText()
-    {
-        levelText.text = "LEVEL " + (_levelId + 1);
 
+
+    public void OnSetChangedText(ScoreTypeEnums scoreType, int value)
+    {
+        if (scoreType == ScoreTypeEnums.Score)
+        {
+            _score += _data.PlayerScoreIncreaseValue;
+            scoreText.text = _score.ToString();
+        }
     }
+    
     public void OnNextLevel()
     {
         ++_levelId;

@@ -10,5 +10,6 @@ namespace Signals
     {
         public UnityAction<bool> onPlayerCollideWithCylinder = delegate { };
         public UnityAction onPlayerInteractedWithCollectable = delegate { };
+        public UnityAction onPlayerInteractedWithFinish = delegate { };
     }
 }

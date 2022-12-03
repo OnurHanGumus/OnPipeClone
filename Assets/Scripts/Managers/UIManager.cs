@@ -34,12 +34,14 @@ namespace Managers
             UISignals.Instance.onClosePanel += OnClosePanel;
 
             CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onPlay += gameOverPanelController.OnPlay;
             CoreGameSignals.Instance.onLevelFailed += OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed += gameOverPanelController.OnStageFailed;
             CoreGameSignals.Instance.onLevelSuccessful += OnLevelSuccessful;
             CoreGameSignals.Instance.onLevelSuccessful += gameOverPanelController.OnStageSuccessFul;
             CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
             CoreGameSignals.Instance.onNextLevel += levelPanelController.OnNextLevel;
+            UISignals.Instance.onSetChangedText += levelPanelController.OnSetChangedText;
 
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
 
@@ -53,12 +55,15 @@ namespace Managers
             UISignals.Instance.onClosePanel -= OnClosePanel;
 
             CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onPlay -= gameOverPanelController.OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= OnStageFailed;
             CoreGameSignals.Instance.onLevelFailed -= gameOverPanelController.OnStageFailed;
             CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
             CoreGameSignals.Instance.onLevelSuccessful -= gameOverPanelController.OnStageSuccessFul;
             CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
             CoreGameSignals.Instance.onNextLevel -= levelPanelController.OnNextLevel;
+            UISignals.Instance.onSetChangedText -= levelPanelController.OnSetChangedText;
+
 
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
 

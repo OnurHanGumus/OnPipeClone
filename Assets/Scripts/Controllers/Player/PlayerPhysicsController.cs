@@ -43,10 +43,12 @@ namespace Controllers
             else if (other.CompareTag("CollectableBlocks"))
             {
                 PlayerSignals.Instance.onPlayerInteractedWithCollectable?.Invoke();
+                ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, 1);
             }
             else if (other.CompareTag("Finish"))
             {
                 CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
+                PlayerSignals.Instance.onPlayerInteractedWithFinish?.Invoke();
             }
         }
         private void OnTriggerExit(Collider other)
