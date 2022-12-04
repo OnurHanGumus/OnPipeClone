@@ -440,7 +440,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21568629, g: 0.32941177, b: 0.5254902, a: 0}
+  m_BackGroundColor: {r: 0.16078432, g: 0.28627452, b: 0.33333334, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1308,10 +1308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2ab6d60985485d97c48e89af5bed12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data:
-    HorizontalInputSpeed: 2
-    ClampSides: {x: -3, y: 3}
-    ClampSpeed: 0.007
 --- !u!1 &171135407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,49 +4613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9a20abb0460594eb3065ddaba1c275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1141310211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1141310212}
-  - component: {fileID: 1141310213}
-  m_Layer: 0
-  m_Name: PoolObjectDemander
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1141310212
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141310211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1921236443}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1141310213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141310211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc17d288f2476cb4ca7a2d5f8ad3e56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1205406023
 GameObject:
   m_ObjectHideFlags: 0
@@ -6812,7 +6765,6 @@ Transform:
   - {fileID: 658509477}
   - {fileID: 735196703}
   - {fileID: 192889014}
-  - {fileID: 1141310212}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

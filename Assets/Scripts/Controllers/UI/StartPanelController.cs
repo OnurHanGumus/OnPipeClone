@@ -38,8 +38,6 @@ public class StartPanelController : MonoBehaviour
     }
     private void GetValues()
     {
-        //_levelId = GetLevelId();
-        //_stageId = GetStageId();
         _goldCount = InitializeValue(SaveLoadStates.Gold);
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
@@ -48,10 +46,7 @@ public class StartPanelController : MonoBehaviour
 
     private void UpdateTexts()
     {
-        //tournamentText.text = "TOURNAMENT " + (_levelId + 1);
-        //stageText.text = ((StageTextsEnum)_stageId).ToString();
         goldText.text = _goldCount.ToString();
-
     }
 
     public void OnSetChangedText(ScoreTypeEnums type, int amount)

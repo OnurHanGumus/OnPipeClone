@@ -41,7 +41,6 @@ namespace Managers
         private void Awake()
         {
             Init();
-            OnInitializeLevel();
         }
 
         private void Init()
@@ -69,28 +68,22 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onLevelInitialize += OnInitializeLevel;
-            CoreGameSignals.Instance.onClearActiveLevel += OnClearActiveLevel;
             CoreGameSignals.Instance.onNextLevel += OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID += OnGetLevelID;
             CoreGameSignals.Instance.onPlay += OnPlay;
             LevelSignals.Instance.onGetCurrentModdedLevel += OnGetCurrentModdedLevelId;
-
         }
 
 
 
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.Instance.onLevelInitialize -= OnInitializeLevel;
-            CoreGameSignals.Instance.onClearActiveLevel -= OnClearActiveLevel;
             CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID -= OnGetLevelID;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             LevelSignals.Instance.onGetCurrentModdedLevel -= OnGetCurrentModdedLevelId;
-
         }
 
         private void OnDisable()
@@ -129,18 +122,6 @@ namespace Managers
             return _levelID;
         }
 
-
-        private void OnInitializeLevel()
-        {
-            UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
-            _currentModdedLevelId = _levelID % Levels.Length;
-            levelLoader.InitializeLevel((GameObject)Levels[_currentModdedLevelId], levelHolder.transform);
-        }
-
-        private void OnClearActiveLevel()
-        {
-            levelClearer.ClearActiveLevel(levelHolder.transform);
-        }
         private void OnPlay()
         {
 
