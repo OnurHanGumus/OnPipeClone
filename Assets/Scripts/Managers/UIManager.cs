@@ -117,5 +117,10 @@ namespace Managers
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
+        public void StoreButton()
+        {
+            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StorePanel);
+            UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
+        }
     }
 }
