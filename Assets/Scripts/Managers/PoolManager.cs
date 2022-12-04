@@ -15,6 +15,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private GameObject obstacleLargePrefab;
     [SerializeField] private GameObject finishPrefab;
+    [SerializeField] private GameObject particlePrefab;
 
     [SerializeField] private Dictionary<PoolEnums, List<GameObject>> poolDictionary;
 
@@ -24,6 +25,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private int amountObstacle = 20;
     [SerializeField] private int amountObstacleLarge = 20;
     [SerializeField] private int amountFinishObject = 2;
+    [SerializeField] private int amountParticles = 2;
 
 
 
@@ -45,6 +47,7 @@ public class PoolManager : MonoBehaviour
         InitializePool(PoolEnums.Obstacle,  obstaclePrefab, amountObstacle);
         InitializePool(PoolEnums.ObstacleLarge,  obstacleLargePrefab, amountObstacleLarge);
         InitializePool(PoolEnums.FinishObject,  finishPrefab, amountFinishObject);
+        InitializePool(PoolEnums.Particle,  particlePrefab, amountParticles);
     }
 
 
@@ -119,6 +122,7 @@ public class PoolManager : MonoBehaviour
         ResetPool(PoolEnums.Obstacle);
         ResetPool(PoolEnums.ObstacleLarge);
         ResetPool(PoolEnums.FinishObject);
+        ResetPool(PoolEnums.Particle);
     }
 
     private void ResetPool(PoolEnums type)

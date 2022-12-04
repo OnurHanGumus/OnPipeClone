@@ -39,6 +39,9 @@ namespace Controllers
             else if (other.CompareTag("Obstacle"))
             {
                 CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Particle);
+                temp.transform.position = transform.position;
+                temp.SetActive(true);
             }
             else if (other.CompareTag("CollectableBlocks"))
             {
@@ -50,6 +53,7 @@ namespace Controllers
                 CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
                 PlayerSignals.Instance.onPlayerInteractedWithFinish?.Invoke();
             }
+
         }
         private void OnTriggerExit(Collider other)
         {
