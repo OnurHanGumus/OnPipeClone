@@ -17,14 +17,10 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
-
         #endregion
-
         #region Serialized Variables
         [SerializeField] private float nextCylinderPosY = 0f;
-
         #endregion
-
         #region Private Variables
         private LevelData _data;
         private float _lastXZScale = 0, _lastYScale = 0;
@@ -32,14 +28,12 @@ namespace Managers
         private bool _isStartPressed = false;
         private bool _isDrinkScoreComplated = false;
         #endregion
-
         #endregion
 
         private void Awake()
         {
             Init();
         }
-
         private void Init()
         {
             _data = GetData();
@@ -57,17 +51,16 @@ namespace Managers
         {
             LevelSignals.Instance.onCylinderDisapeared += OnCylinderDisapeared;
             LevelSignals.Instance.onDrinkScoreComplated += OnDrinkValueComplated;
-            CoreGameSignals.Instance.onPlay += OnStartPressed;
+            CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
             CoreGameSignals.Instance.onLevelInitialize += OnLevelInitialize;
-
         }
 
         private void UnsubscribeEvents()
         {
             LevelSignals.Instance.onCylinderDisapeared -= OnCylinderDisapeared;
             LevelSignals.Instance.onDrinkScoreComplated -= OnDrinkValueComplated;
-            CoreGameSignals.Instance.onPlay -= OnStartPressed;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
             CoreGameSignals.Instance.onLevelInitialize -= OnLevelInitialize;
         }
@@ -83,8 +76,6 @@ namespace Managers
         private void Start()
         {
             InitializeLevel();
-
-
         }
 
         private void InitializeLevel()
@@ -97,27 +88,27 @@ namespace Managers
             }
         }
 
-        private void GetCylinderFromPool()
+        private void GetCylinderFromPool() //if cylinder scale = 1, then its y is 2 br.
         {
-            GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Cylinder);
-            float xzScale;
+            GameObject cylinder = PoolSignals.Instance.onGetObject(PoolEnums.Cylinder);
+            float cylinderXZScale;
 
             do
             {
-                xzScale = Random.Range(_data.CylinderMinXZScale, _data.CylinderMaxXZScale);
-                xzScale = (float)Math.Round(xzScale, 1);
-            } while (xzScale == _lastXZScale);
+                cylinderXZScale = Random.Range(_data.CylinderMinXZScale, _data.CylinderMaxXZScale);
+                cylinderXZScale = (float)Math.Round(cylinderXZScale, 1);
+            } while (cylinderXZScale == _lastXZScale);
 
-            _lastXZScale = xzScale;
+            _lastXZScale = cylinderXZScale;
 
-            temp.transform.localScale = new Vector3(xzScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), xzScale);
-            temp.transform.position = new Vector3(0, nextCylinderPosY + (temp.transform.localScale.y), 0);
+            cylinder.transform.localScale = new Vector3(cylinderXZScale, Random.Range(_data.CylinderMinYScale, _data.CylinderMaxYScale), cylinderXZScale);
+            cylinder.transform.position = new Vector3(0, nextCylinderPosY + (cylinder.transform.localScale.y), 0);
 
-            _lastYScale = temp.transform.localScale.y;
-            _lastCylinderPosY = temp.transform.position.y;
+            _lastYScale = cylinder.transform.localScale.y;
+            _lastCylinderPosY = cylinder.transform.position.y;
 
-            temp.SetActive(true);
-            nextCylinderPosY = nextCylinderPosY + (temp.transform.localScale.y * 2);
+            nextCylinderPosY = nextCylinderPosY + (cylinder.transform.localScale.y * 2);
+            cylinder.SetActive(true);
         }
 
         private void GetCollectablesFromPool()
@@ -133,7 +124,7 @@ namespace Managers
 
         private void GetObstaclesFromPool()
         {
-            int rand = Random.Range(0, 5);
+            int rand = Random.Range(0, _data.ObstacleProbablity);
             GameObject temp;
             if (rand == 0)
             {
@@ -158,6 +149,14 @@ namespace Managers
             temp.SetActive(true);
         }
 
+        private void OnPlay()
+        {
+            _isStartPressed = true;
+        }
+        private void OnLevelInitialize()
+        {
+            InitializeLevel();
+        }
         private void OnCylinderDisapeared()
         {
             if (_isDrinkScoreComplated)
@@ -168,34 +167,16 @@ namespace Managers
             GetCollectablesFromPool();
             GetObstaclesFromPool();
         }
-
-        private void OnPlay()
+        private void OnDrinkValueComplated()
         {
-        }
-        private void OnStartPressed()
-        {
-            _isStartPressed = true;
+            _isDrinkScoreComplated = true;
+            GetFinishObjectFromPool();
         }
         private void OnResetLevel()
         {
             _isStartPressed = false;
             nextCylinderPosY = 0;
             _isDrinkScoreComplated = false;
-
-
-        }
-
-        private void OnLevelInitialize()
-        {
-            InitializeLevel();
-
-        }
-
-        private void OnDrinkValueComplated()
-        {
-            // sütun oluþturmayý durdur, finish objesini oluþtur.
-            _isDrinkScoreComplated = true;
-            GetFinishObjectFromPool();
         }
     }
 }

@@ -19,3 +19,8 @@ MonoBehaviour:
     CylinderMinYScale: 2
     CylinderMaxYScale: 4
     RowWeight: 4
+    DistanceBetweenBlocks: 0.33333334
+    PlayerDrinkScoreIncreaseValue: 2
+    PlayerDrinkScoreMaksValue: 100
+    PlayerScoreIncreaseValue: 1
+    ObstacleProbablity: 5

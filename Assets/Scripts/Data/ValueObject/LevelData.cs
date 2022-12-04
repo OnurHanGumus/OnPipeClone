@@ -14,5 +14,7 @@ namespace Data.ValueObject
 
         public int PlayerDrinkScoreIncreaseValue = 2, PlayerDrinkScoreMaksValue = 100;
         public int PlayerScoreIncreaseValue = 1;
+
+        public int ObstacleProbablity = 5;
     }
 }

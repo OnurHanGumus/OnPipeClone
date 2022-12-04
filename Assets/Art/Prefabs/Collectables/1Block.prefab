@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2362791174550763838}
   - component: {fileID: 1209554628848330122}
-  - component: {fileID: 4908822748816614254}
   m_Layer: 0
-  m_Name: CollectableRow
+  m_Name: 1Block
   m_TagString: CollectableBlocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,18 +56,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3566813, y: 0.30540973, z: 1}
   m_Center: {x: 0.003128767, y: 0.003128767, z: 0}
---- !u!114 &4908822748816614254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611576628377436538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ba8456cb1163d4f830b0ff6b7ccff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8733390793426968
 PrefabInstance:
   m_ObjectHideFlags: 0
