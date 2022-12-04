@@ -10,6 +10,7 @@ namespace Enums
         SoundState,
         Level,
         StageNum,
+        Gold,
 
     }
 }

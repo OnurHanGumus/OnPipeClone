@@ -15,11 +15,11 @@ public class StartPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI tournamentText, stageText, gemText;
+    [SerializeField] private TextMeshProUGUI goldText;
     #endregion
     #region Private Variables
     private LevelData _data;
-    private int _levelId, _stageId;
+    private int _levelId, _stageId, _goldCount;
     #endregion
     #endregion
     private void Awake()
@@ -38,18 +38,28 @@ public class StartPanelController : MonoBehaviour
     }
     private void GetValues()
     {
-        _levelId = GetLevelId();
-        _stageId = GetStageId();
+        //_levelId = GetLevelId();
+        //_stageId = GetStageId();
+        _goldCount = InitializeValue(SaveLoadStates.Gold);
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
 
-    private int GetLevelId() => SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
-    private int GetStageId() => SaveSignals.Instance.onGetScore(SaveLoadStates.StageNum, SaveFiles.SaveFile);
+    private int InitializeValue(SaveLoadStates type) => SaveSignals.Instance.onGetScore(type, SaveFiles.SaveFile);
 
     private void UpdateTexts()
     {
-        tournamentText.text = "TOURNAMENT " + (_levelId + 1);
-        stageText.text = ((StageTextsEnum)_stageId).ToString();
+        //tournamentText.text = "TOURNAMENT " + (_levelId + 1);
+        //stageText.text = ((StageTextsEnum)_stageId).ToString();
+        goldText.text = _goldCount.ToString();
+
+    }
+
+    public void OnSetChangedText(ScoreTypeEnums type, int amount)
+    {
+        if (type == ScoreTypeEnums.Gold)
+        {
+            goldText.text = amount.ToString();
+        }
     }
 
     public void OnRestartLevel()

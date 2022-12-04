@@ -54,11 +54,12 @@ namespace Managers
         #endregion
         private void Init()
         {
-
+            Gold = InitializeValue(SaveLoadStates.Gold);
         }
         private void Start()
         {
             Init();
+            
         }
         #region Event Subscription
 
@@ -97,11 +98,21 @@ namespace Managers
                 PlayerScore += amount;
                 UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
             }
+            else if (type.Equals(ScoreTypeEnums.Gold))
+            {
+                Gold += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gold);
+                SaveSignals.Instance.onSaveScore?.Invoke(Gold,SaveLoadStates.Gold,SaveFiles.SaveFile);
+            }
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
         {
-
+            if (type.Equals(ScoreTypeEnums.Gold))
+            {
+                Gold -= amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gold);
+            }
         }
 
 
