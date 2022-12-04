@@ -57,18 +57,25 @@ public class LevelPanelController : MonoBehaviour
 
     public void OnPlayerInteractedWithCollectable()
     {
-        _drinkScore += _data.PlayerDrinkScoreIncreaseValue;
-        drinkScoreText.text = _drinkScore.ToString() + "/100";
         SetRadialFilletAmount();
 
         if (_isDrinkScoreComplated)
         {
             return;
         }
+
         if (_drinkScore >= _data.PlayerDrinkScoreMaksValue)
         {
             LevelSignals.Instance.onDrinkScoreComplated?.Invoke();
             _isDrinkScoreComplated = true;
+
+            _drinkScore = 100;
+            drinkScoreText.text = _drinkScore.ToString() + "/100";
+        }
+        else
+        {
+            _drinkScore += _data.PlayerDrinkScoreIncreaseValue;
+            drinkScoreText.text = _drinkScore.ToString() + "/100";
         }
     }
 
