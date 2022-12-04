@@ -37,6 +37,7 @@ namespace Managers
         private void Init()
         {
             _data = GetData();
+            nextCylinderPosY = _data.InitialCylinderPos;
         }
         public LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
 
@@ -175,7 +176,7 @@ namespace Managers
         private void OnResetLevel()
         {
             _isStartPressed = false;
-            nextCylinderPosY = 0;
+            nextCylinderPosY = _data.InitialCylinderPos;
             _isDrinkScoreComplated = false;
         }
     }

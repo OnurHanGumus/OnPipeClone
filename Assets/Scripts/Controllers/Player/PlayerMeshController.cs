@@ -14,6 +14,7 @@ namespace Controllers
         #region Serialized Variables
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private PlayerManager manager;
+        [SerializeField] private GameObject colliders;
 
         #endregion
         #region Private Variables
@@ -34,11 +35,13 @@ namespace Controllers
         public void OnLevelFailed()
         {
             meshRenderer.enabled = false;
+            colliders.SetActive(false);
         }
 
         public void OnRestartLevel()
         {
             meshRenderer.enabled = true;
+            colliders.SetActive(true);
         }
     }
 }

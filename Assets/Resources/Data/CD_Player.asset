@@ -17,4 +17,4 @@ MonoBehaviour:
     InitializePosY: 0
     SpeedY: 2
     SmallingTime: 0.5
-    FailedSlowValue: 0.02
+    FailedSlowValue: 0.5

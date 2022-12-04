@@ -61,11 +61,12 @@ namespace Controllers
 
             if (_isGameOver)
             {
-                if (_rig.velocity.y < 0)
+                if (_rig.velocity.y <= 0)
                 {
+                    _rig.velocity = Vector3.zero;
                     return;
                 }
-                _rig.velocity -= new Vector3(0, _data.FailedSlowValue, 0);
+                _rig.velocity -= new Vector3(0, 0.02f * (1/_data.FailedSlowValue), 0);
             }
             else
             {

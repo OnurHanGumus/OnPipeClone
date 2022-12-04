@@ -34,11 +34,14 @@ public class LevelPanelController : MonoBehaviour
         Init();
         UpdateLevelText();
 
+
     }
     private void Init()
     {
         _data = GetData();
         _levelId = GetLevelId();
+        filledSquareRenderer.material.SetFloat("_Arc2", 360);
+
     }
     private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
     private int GetLevelId() => SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);

@@ -6,6 +6,7 @@ namespace Data.ValueObject
     [Serializable]
     public class LevelData
     {
+        public int InitialCylinderPos = 0;
         public int InitializeCylinderCount = 5;
         public float CylinderMinXZScale = 0.5f, CylinderMaxXZScale = 1f;
         public int CylinderMinYScale = 2, CylinderMaxYScale = 4;

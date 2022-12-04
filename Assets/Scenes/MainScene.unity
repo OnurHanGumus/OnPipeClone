@@ -4581,6 +4581,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1657324717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9119455607326440100, guid: f1c2708ad1b22114dbaf1dcf1835ab96, type: 3}
+  m_PrefabInstance: {fileID: 771546631725524775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1694155704
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,6 +7802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 38247216980031773}
   manager: {fileID: 8375504656369502789}
+  colliders: {fileID: 1657324717}
 --- !u!224 &6962386289050532996
 RectTransform:
   m_ObjectHideFlags: 0
