@@ -8,6 +8,7 @@ TagManager:
   - CollectableBlocks
   - CollectableDeactivator
   - Obstacle
+  - PlayerPhysics
   layers:
   - Default
   - TransparentFX

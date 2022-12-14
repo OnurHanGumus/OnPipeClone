@@ -15,6 +15,7 @@ namespace Controllers
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private PlayerManager manager;
         [SerializeField] private GameObject colliders;
+        [SerializeField] private Collider physicsCollider;
 
         #endregion
         #region Private Variables
@@ -36,12 +37,15 @@ namespace Controllers
         {
             meshRenderer.enabled = false;
             colliders.SetActive(false);
+            physicsCollider.enabled = false;
         }
 
         public void OnRestartLevel()
         {
             meshRenderer.enabled = true;
             colliders.SetActive(true);
+            physicsCollider.enabled = true;
+
         }
     }
 }

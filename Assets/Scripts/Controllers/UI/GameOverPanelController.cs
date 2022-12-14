@@ -69,7 +69,7 @@ public class GameOverPanelController : MonoBehaviour
     }
     
 
-    public async void EnableButtons()
+    public async void EnableButtons()//task yazarak kullan.
     {
         while (!_isLiquidAnimationDone)
         {

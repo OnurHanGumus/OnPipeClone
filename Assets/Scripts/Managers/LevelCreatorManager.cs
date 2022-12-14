@@ -116,10 +116,10 @@ namespace Managers
         {
             for (int i = 0; i < (_lastYScale / _lastXZScale) * _data.RowWeight; i++)
             {
-                GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Collectable);
-                temp.transform.position = new Vector3(0, (_lastCylinderPosY - (_lastYScale/2)) + (((float)i * _data.DistanceBetweenBlocks))*_lastXZScale, 0);
-                temp.transform.localScale = new Vector3(_lastXZScale, _lastXZScale, _lastXZScale);
-                temp.SetActive(true);
+                GameObject collectableRow = PoolSignals.Instance.onGetObject(PoolEnums.Collectable);
+                collectableRow.transform.position = new Vector3(0, (_lastCylinderPosY - (_lastYScale/2)) + (((float)i * _data.DistanceBetweenBlocks))*_lastXZScale, 0);
+                collectableRow.transform.localScale = new Vector3(_lastXZScale, _lastXZScale, _lastXZScale);
+                collectableRow.SetActive(true);
             }
         }
 
